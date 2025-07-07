@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+html, body {
+    height: 100%; /* Задаем высоту html и body равной 100% viewport */
+    margin: 0; /* Убираем стандартные отступы */
+}
+
+body {
+    background-color: #f8f9fa; /* Светлый фон страницы */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.registration-container {
+    height: 100vh; /* Высота экрана */
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+}
+
+.registration-form {
+    background: #ffffff; /* Белый фон формы */
+    padding: 30px; /* Внутренние отступы */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для формы */
+    width: 100%;
+    max-width: 400px; /* Ограничение ширины */
+}
+
+    .registration-form h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333333;
+    }
+
+.login-container {
+    height: 100vh; /* Высота экрана */
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+}
+
+.login-form {
+    background: #ffffff; /* Белый фон формы */
+    padding: 30px; /* Внутренние отступы */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для формы */
+    width: 100%;
+    max-width: 400px; /* Ограничение ширины */
+}
+
+    .login-form h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333333;
+    }
+
+.btn-custom {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+
+.form-group label {
+    font-weight: 500;
+    color: #555555;
+}
+
+header img {
+    max-height: 100px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+}
+
+main h2 {
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+footer p {
+    padding: 1rem 0;
+    text-align: center;
+}
