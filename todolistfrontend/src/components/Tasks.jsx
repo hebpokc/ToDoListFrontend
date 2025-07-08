@@ -317,6 +317,24 @@ const Tasks = () => {
                     ➕ Добавить категорию
                 </button>
 
+                <div className="w-25 mt-3 mb-4">
+                    <label htmlFor="categoryFilter" className="form-label">Фильтр по категории</label>
+                    <select
+                        id="categoryFilter"
+                        className="form-select"
+                        value={selectedCategory}
+                        onChange={handleFilterChange}
+                    >
+                        <option value="">Все категории</option>
+                        {categories.map(cat => (
+                            <option key={cat.id} value={cat.id}>
+                                {cat.name}
+                            </option>
+                        ))}
+                        <option value="completed">Выполненные</option>
+                    </select>
+                </div>
+
                 <div className="alert alert-info text-center">
                     <strong>У вас пока нет задач.</strong> Добавьте новую задачу, чтобы начать.
                 </div>
