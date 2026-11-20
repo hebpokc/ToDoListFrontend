@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+const API_URL = 'https://localhost:44335';
+
 const EditTask = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -37,7 +39,7 @@ const EditTask = () => {
 
         const fetchTaskAndCategories = async () => {
             try {
-                const categoryResponse = await fetch(`https://localhost:44335/api/category/getAll`, {
+                const categoryResponse = await fetch(`${API_URL}/api/category/getAll`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -48,7 +50,7 @@ const EditTask = () => {
                 const categoriesData = await categoryResponse.json();
                 setCategories(categoriesData);
 
-                const taskResponse = await fetch(`https://localhost:44335/api/task/getById/${id}`, {
+                const taskResponse = await fetch(`${API_URL}/api/task/getById/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -74,7 +76,7 @@ const EditTask = () => {
                 setExpenseFields(isExpense);
 
                 if (isExpense) {
-                    const expenseResponse = await fetch(`https://localhost:44335/api/expense/getByTaskId/${id}`, {
+                    const expenseResponse = await fetch(`${API_URL}/api/expense/getByTaskId/${id}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`,
                             'Content-Type': 'application/json'
@@ -129,7 +131,7 @@ const EditTask = () => {
         try {
             const userId = localStorage.getItem('user_id');
 
-            const taskResponse = await fetch(`https://localhost:44335/api/task/update/${id}`, {
+            const taskResponse = await fetch(`${API_URL}/api/task/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -150,7 +152,7 @@ const EditTask = () => {
             }
 
             if (expenseFields && expense.id) {
-                const expenseResponse = await fetch(`https://localhost:44335/api/expense/update/${expense.id}`, {
+                const expenseResponse = await fetch(`${API_URL}/api/expense/update/${expense.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -187,7 +189,7 @@ const EditTask = () => {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch(`https://localhost:44335/api/task/delete/${id}`, {
+            const response = await fetch(`${API_URL}/api/task/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -207,13 +209,13 @@ const EditTask = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Редактировать задачу</h2>
+        <div className="container mt-5 mb-5 fade-in">
+            <h2 className="page-title text-center mb-4">Редактировать задачу</h2>
 
-            {error && <div className="alert alert-danger">{error}</div>}
-            {success && <div className="alert alert-success">{success}</div>}
+            {error && <div className="alert alert-danger form-card">{error}</div>}
+            {success && <div className="alert alert-success form-card">{success}</div>}
 
-            <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+            <form onSubmit={handleSubmit} className="glass form-card">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Заголовок</label>
                     <input
@@ -289,8 +291,8 @@ const EditTask = () => {
 
                 {expenseFields && (
                     <>
-                        <hr />
-                        <h5>Дополнительно: Расход</h5>
+                        <hr style={{ borderColor: 'var(--border)' }} />
+                        <h5 className="mb-3"><i className="bi bi-cash-coin me-1"></i> Расход</h5>
 
                         <div className="mb-3">
                             <label htmlFor="amount" className="form-label">Сумма</label>
@@ -336,13 +338,13 @@ const EditTask = () => {
                     </>
                 )}
 
-                <button type="submit" className="btn btn-primary w-100 mb-2"> 
-                    Сохранить изменения
+                <button type="submit" className="btn btn-primary w-100 py-2 mb-2">
+                    <i className="bi bi-check2 me-1"></i> Сохранить изменения
                 </button>
 
                 <button
                     type="button"
-                    className="btn btn-outline-danger w-100 mb-2"
+                    className="btn btn-glass-danger w-100 mb-2"
                     onClick={handleDelete}
                 >
                     <i className="bi bi-trash"></i> Удалить задачу
@@ -350,7 +352,7 @@ const EditTask = () => {
 
                 <button
                     type="button"
-                    className="btn btn-outline-secondary w-100"
+                    className="btn btn-outline-light-glass w-100"
                     onClick={() => navigate(-1)}
                 >
                     <i className="bi bi-arrow-left"></i> Назад

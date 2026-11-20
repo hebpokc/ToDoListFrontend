@@ -94,14 +94,13 @@ const Profile = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 mb-5 fade-in">
+            <h2 className="page-title text-center mb-4">Редактирование профиля</h2>
 
-            <h2 className="mb-4">Редактирование профиля</h2>
+            {error && <div className="alert alert-danger form-card">{error}</div>}
+            {success && <div className="alert alert-success form-card">{success}</div>}
 
-            {error && <div className="alert alert-danger">{error}</div>}
-            {success && <div className="alert alert-success">{success}</div>}
-
-            <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+            <form onSubmit={handleSubmit} className="glass form-card">
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Имя пользователя</label>
                     <input
@@ -153,12 +152,13 @@ const Profile = () => {
                 </div>
 
                 <div className="mb-4">
-                    <button type="submit" className="btn btn-primary w-100 mb-2">
-                        Сохранить изменения
+                    <button type="submit" className="btn btn-primary w-100 py-2 mb-2">
+                        <i className="bi bi-check2 me-1"></i> Сохранить изменения
                     </button>
 
                     <button
-                        className="btn btn-outline-secondary w-100"
+                        type="button"
+                        className="btn btn-outline-light-glass w-100"
                         onClick={() => navigate(-1)}
                     >
                         <i className="bi bi-arrow-left"></i> Назад

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = 'https://localhost:44335';
+
 const AddTask = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -25,7 +27,7 @@ const AddTask = () => {
         const fetchCategories = async () => {
             const token = localStorage.getItem('auth_token');
             try {
-                const response = await fetch(`https://localhost:44335/api/category/getAll`, {
+                const response = await fetch(`${API_URL}/api/category/getAll`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -64,7 +66,7 @@ const AddTask = () => {
         try {
             const dueDateUTC = new Date(formData.dueDate).toISOString();
 
-            const response = await fetch(`https://localhost:44335/api/task/create`, {
+            const response = await fetch(`${API_URL}/api/task/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +89,7 @@ const AddTask = () => {
             const taskData = await response.json();
 
             if (formData.withExpense) {
-                const expenseResponse = await fetch(`https://localhost:44335/api/expense/create`, {
+                const expenseResponse = await fetch(`${API_URL}/api/expense/create`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -122,13 +124,13 @@ const AddTask = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Создать новую задачу</h2>
+        <div className="container mt-5 mb-5 fade-in">
+            <h2 className="page-title text-center mb-4">Создать новую задачу</h2>
 
-            {error && <div className="alert alert-danger">{error}</div>}
-            {success && <div className="alert alert-success">{success}</div>}
+            {error && <div className="alert alert-danger form-card">{error}</div>}
+            {success && <div className="alert alert-success form-card">{success}</div>}
 
-            <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+            <form onSubmit={handleSubmit} className="glass form-card">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Заголовок задачи</label>
                     <input
@@ -212,12 +214,12 @@ const AddTask = () => {
                         onChange={handleChange}
                     />
                     <label htmlFor="withExpense" className="form-check-label">
-                        Добавить расход
+                        <i className="bi bi-cash-coin me-1"></i> Добавить расход
                     </label>
                 </div>
 
                 {formData.withExpense && (
-                    <>
+                    <div className="glass p-3 mb-4" style={{ background: 'rgba(255,255,255,0.05)' }}>
                         <div className="mb-3">
                             <label htmlFor="amount" className="form-label">Сумма</label>
                             <input
@@ -248,7 +250,7 @@ const AddTask = () => {
                             </select>
                         </div>
 
-                        <div className="mb-4">
+                        <div className="mb-0">
                             <label htmlFor="spentAt" className="form-label">Дата расхода</label>
                             <input
                                 type="datetime-local"
@@ -259,16 +261,16 @@ const AddTask = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                    </>
+                    </div>
                 )}
 
-                <button type="submit" className="btn btn-primary w-100 mb-3">
-                    Создать задачу
+                <button type="submit" className="btn btn-primary w-100 py-2 mb-2">
+                    <i className="bi bi-plus-circle me-1"></i> Создать задачу
                 </button>
 
                 <button
                     type="button"
-                    className="btn btn-outline-secondary w-100"
+                    className="btn btn-outline-light-glass w-100"
                     onClick={() => navigate(-1)}
                 >
                     <i className="bi bi-arrow-left"></i> Назад

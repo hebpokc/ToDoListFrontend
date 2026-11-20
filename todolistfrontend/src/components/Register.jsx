@@ -20,7 +20,8 @@ const Register = () => {
         const hasCyrillic = /[а-яёА-ЯЁ]/.test(password);
 
         if (hasCyrillic) {
-            setError("Пароль содержит недопустимые символы");
+            setError(true);
+            setErrorMessage('Пароль содержит недопустимые символы');
             return;
         }
 
@@ -34,8 +35,9 @@ const Register = () => {
     };
 
     return (
-        <div className="registration-container">
-            <div className="registration-form">
+        <div className="auth-container">
+            <div className="auth-form">
+                <span className="auth-logo">📝</span>
                 <h1>Регистрация пользователя</h1>
 
                 <form onSubmit={handleSubmit}>
@@ -75,10 +77,10 @@ const Register = () => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-custom w-100">Регистрация</button>
+                    <button type="submit" className="btn btn-primary w-100 py-2">Регистрация</button>
 
                     <div className="text-center mt-3">
-                        <p>Уже есть аккаунт? <a href="/auth/login" className="text-primary">Войти</a></p>
+                        <p className="mb-0">Уже есть аккаунт? <a href="/auth/login">Войти</a></p>
                     </div>
 
                     {error && <div className="text-danger text-center mt-2">{errorMessage}</div>}

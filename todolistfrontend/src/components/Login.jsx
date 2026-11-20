@@ -19,7 +19,8 @@ const Login = () => {
         const hasCyrillic = /[а-яёА-ЯЁ]/.test(password);
 
         if (hasCyrillic) {
-            setError("Пароль содержит недопустимые символы");
+            setError(true);
+            setErrorMessage('Пароль содержит недопустимые символы');
             return;
         }
 
@@ -34,13 +35,14 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-form">
+        <div className="auth-container">
+            <div className="auth-form">
+                <span className="auth-logo">✅</span>
                 <h1>Вход в систему</h1>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group mb-3">
-                        <label htmlFor="username">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -63,10 +65,10 @@ const Login = () => {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-custom w-100">Войти</button>
+                    <button type="submit" className="btn btn-primary w-100 py-2">Войти</button>
 
                     <div className="text-center mt-3">
-                        <p>Нет аккаунта? <a href="/auth/register" className="text-primary">Зарегистрироваться</a></p>
+                        <p className="mb-0">Нет аккаунта? <a href="/auth/register">Зарегистрироваться</a></p>
                     </div>
 
                     {error && <div className="text-danger text-center mt-2">{errorMessage}</div>}
