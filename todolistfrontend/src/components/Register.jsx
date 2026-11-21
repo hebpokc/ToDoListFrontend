@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/authService';
+import AnimatedBackground from './AnimatedBackground';
 
 const Register = () => {
     const [error, setError] = useState(false);
@@ -35,58 +36,78 @@ const Register = () => {
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-form">
-                <span className="auth-logo">📝</span>
-                <h1>Регистрация пользователя</h1>
-
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group mb-3">
-                        <label htmlFor="username">Логин</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            className="form-control"
-                            placeholder="Введите ваш логин"
-                            required
-                        />
+        <>
+            <AnimatedBackground />
+            <div className="auth-page">
+                <div className="auth-layout">
+                    <div className="auth-hero">
+                        <span className="hero-logo">🚀</span>
+                        <h1><span className="shimmer-text">Начните сегодня</span></h1>
+                        <p className="hero-desc">
+                            Создайте аккаунт за минуту и получите порядок в делах:
+                            задачи с дедлайнами, категории, учёт расходов
+                            и напоминания на почту — ничего не забудется.
+                        </p>
+                        <div className="auth-features">
+                            <span className="feature-chip"><i className="bi bi-lightning-charge"></i> Быстрый старт</span>
+                            <span className="feature-chip"><i className="bi bi-shield-lock"></i> Безопасный вход</span>
+                            <span className="feature-chip"><i className="bi bi-graph-up-arrow"></i> Прогресс задач</span>
+                        </div>
                     </div>
 
-                    <div className="form-group mb-3">
-                        <label htmlFor="email">Почта</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="Введите вашу почту"
-                            required
-                        />
+                    <div className="auth-form">
+                        <span className="auth-icon">📝</span>
+                        <h2><span className="shimmer-text">Регистрация</span></h2>
+
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group mb-3">
+                                <label htmlFor="username">Логин</label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    className="form-control"
+                                    placeholder="Введите ваш логин"
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group mb-3">
+                                <label htmlFor="email">Почта</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="form-control"
+                                    placeholder="Введите вашу почту"
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group mb-4">
+                                <label htmlFor="password">Пароль</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className="form-control"
+                                    placeholder="Введите ваш пароль"
+                                    required
+                                />
+                            </div>
+
+                            <button type="submit" className="btn btn-primary w-100 py-2">Создать аккаунт</button>
+
+                            <div className="text-center mt-3">
+                                <p className="mb-0">Уже есть аккаунт? <a href="/auth/login">Войти</a></p>
+                            </div>
+
+                            {error && <div className="text-danger text-center mt-2">{errorMessage}</div>}
+                        </form>
                     </div>
-
-                    <div className="form-group mb-4">
-                        <label htmlFor="password">Пароль</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="Введите ваш пароль"
-                            required
-                        />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary w-100 py-2">Регистрация</button>
-
-                    <div className="text-center mt-3">
-                        <p className="mb-0">Уже есть аккаунт? <a href="/auth/login">Войти</a></p>
-                    </div>
-
-                    {error && <div className="text-danger text-center mt-2">{errorMessage}</div>}
-                </form>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

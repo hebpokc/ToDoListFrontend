@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AnimatedBackground from './AnimatedBackground';
 
 const API_URL = 'https://localhost:44335';
 
@@ -209,8 +210,10 @@ const EditTask = () => {
     };
 
     return (
+        <>
+        <AnimatedBackground />
         <div className="container mt-5 mb-5 fade-in">
-            <h2 className="page-title text-center mb-4">Редактировать задачу</h2>
+            <h2 className="page-title text-center mb-4"><span className="shimmer-text">Редактировать задачу</span></h2>
 
             {error && <div className="alert alert-danger form-card">{error}</div>}
             {success && <div className="alert alert-success form-card">{success}</div>}
@@ -359,6 +362,7 @@ const EditTask = () => {
                 </button>
             </form>
         </div>
+        </>
     );
 };
 

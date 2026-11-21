@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AnimatedBackground from './AnimatedBackground';
 
 const Profile = () => {
     const [formData, setFormData] = useState({
@@ -94,8 +95,10 @@ const Profile = () => {
     };
 
     return (
+        <>
+        <AnimatedBackground />
         <div className="container mt-5 mb-5 fade-in">
-            <h2 className="page-title text-center mb-4">Редактирование профиля</h2>
+            <h2 className="page-title text-center mb-4"><span className="shimmer-text">Редактирование профиля</span></h2>
 
             {error && <div className="alert alert-danger form-card">{error}</div>}
             {success && <div className="alert alert-success form-card">{success}</div>}
@@ -166,6 +169,7 @@ const Profile = () => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

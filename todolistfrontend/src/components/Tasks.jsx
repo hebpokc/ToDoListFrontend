@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { parseJwt } from '../services/jwt';
 import { useNavigate } from 'react-router-dom';
+import AnimatedBackground from './AnimatedBackground';
 
 const API_URL = 'https://localhost:44335';
 
@@ -252,7 +253,7 @@ const Tasks = () => {
         <>
             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4 fade-in">
                 <div>
-                    <h2 className="page-title mb-1">Ваши задачи</h2>
+                    <h2 className="page-title mb-1"><span className="shimmer-text">Ваши задачи</span></h2>
                     <p className="welcome-sub mb-0">
                         <i className="bi bi-person-circle me-1"></i> Добро пожаловать, {username}
                     </p>
@@ -327,21 +328,17 @@ const Tasks = () => {
         </>
     );
 
-    if (tasks.length === 0) {
-        return (
-            <div className="container mt-5">
-                {pageHeader}
+    return (
+        <>
+            <AnimatedBackground />
+            <div className="container mt-5 mb-5">
+            {pageHeader}
+
+            {tasks.length === 0 ? (
                 <div className="alert alert-glass-info text-center fade-in">
                     <strong>У вас пока нет задач.</strong> Добавьте новую задачу, чтобы начать.
                 </div>
-            </div>
-        );
-    }
-
-    return (
-        <div className="container mt-5 mb-5">
-            {pageHeader}
-
+            ) : (
             <div className="row g-4 stagger">
                 {tasks.map((task) => {
                     const isCompleted = task.statusId === STATUS_COMPLETED;
@@ -414,6 +411,7 @@ const Tasks = () => {
                     );
                 })}
             </div>
+            )}
 
             <Modal
                 isOpen={isAddCategoryModalOpen}
@@ -468,6 +466,7 @@ const Tasks = () => {
                 </div>
             </Modal>
         </div>
+        </>
     );
 };
 
