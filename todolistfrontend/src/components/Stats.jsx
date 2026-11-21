@@ -182,9 +182,6 @@ const Stats = () => {
                         <button className="btn btn-outline-light-glass" onClick={() => navigate('/tasks')}>
                             <i className="bi bi-list-check me-1"></i> К задачам
                         </button>
-                        <button className="btn btn-outline-light-glass" onClick={() => navigate(-1)}>
-                            <i className="bi bi-arrow-left"></i> Назад
-                        </button>
                     </div>
                 </div>
 
