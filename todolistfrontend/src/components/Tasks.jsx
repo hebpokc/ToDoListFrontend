@@ -258,7 +258,13 @@ const Tasks = () => {
                         <i className="bi bi-person-circle me-1"></i> Добро пожаловать, {username}
                     </p>
                 </div>
-                <div className="d-flex gap-2">
+                <div className="d-flex gap-2 flex-wrap">
+                    <button
+                        className="btn btn-outline-light-glass"
+                        onClick={() => navigate('/stats')}
+                    >
+                        <i className="bi bi-pie-chart me-1"></i> Статистика
+                    </button>
                     <button
                         className="btn btn-outline-light-glass"
                         onClick={() => navigate('/profile')}
@@ -349,12 +355,14 @@ const Tasks = () => {
                                 className={`task-card ${isCompleted ? 'completed' : ''}`}
                                 style={{ '--cat-color': categoryColors[task.categoryId] || '#8b5cf6' }}
                             >
-                                {isOverdue && (
-                                    <div className="overdue-badge">
-                                        <i className="bi bi-alarm me-1"></i> Просрочено
-                                    </div>
-                                )}
                                 <div className="card-body d-flex flex-column p-4">
+                                    {isOverdue && (
+                                        <div className="mb-2">
+                                            <span className="overdue-badge">
+                                                <i className="bi bi-alarm me-1"></i> Просрочено
+                                            </span>
+                                        </div>
+                                    )}
                                     <h5 className="card-title">{task.title}</h5>
                                     <p className="card-text text-muted small">
                                         {task.description || 'Описание отсутствует'}

@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import AddTask from './components/AddTask';
 import EditTask from './components/EditTask'
 import ProtectedRoute from './components/ProtectedRoute';
+import Stats from './components/Stats';
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/stats" element={<ProtectedRoute><Stats /></ProtectedRoute>} />
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/edit-task/:id" element={<EditTask />} />
             <Route
